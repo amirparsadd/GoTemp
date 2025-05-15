@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"gotemp/converter"
+	"gotemp/registry"
 	"os"
 	"strconv"
 	"strings"
@@ -15,7 +16,7 @@ func main() {
 	// 2 - From
 	// 3 - To
 
-	converter.RegisterBaseUnits()
+	registry.RegisterBaseUnits()
 
 	if(len(os.Args) != 4) {
 		exitWithError("Invalid Args Length.")
@@ -27,10 +28,10 @@ func main() {
 		exitWithError("Invalid Value. Must Be Float64")
 	}
 
-	var from, fromOk = converter.UnitRegistry[os.Args[2]]
-	var to, toOk = converter.UnitRegistry[os.Args[3]]
+	var from, fromOk = registry.UnitRegistry[os.Args[2]]
+	var to, toOk = registry.UnitRegistry[os.Args[3]]
 
-	var allowedUnitsString = strings.Join(converter.GetAllowedUnits(), ", ")
+	var allowedUnitsString = strings.Join(registry.GetAllowedUnits(), ", ")
 
 	if(!fromOk) {
 		exitWithError("Invalid From Unit! Allowed Units: " + allowedUnitsString)
