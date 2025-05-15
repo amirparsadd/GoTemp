@@ -1,0 +1,35 @@
+# Binaries for this project
+gotemp
+gotemp.exe
+
+# Dependency management
+/vendor
+
+# IDE specific files
+.idea/
+.vscode/
+*.iml
+*.workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*~
+\#*#
+.*.swp
+.DS_Store?
+
+# Test cache
+_test/
+
+# Coverage files
+coverage.out
+
+# Executables
+*.exe
+gotemp
+
+# Log files
+*.log
