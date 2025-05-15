@@ -28,12 +28,14 @@ func main() {
 	var from, fromOk = converter.UnitRegistry[os.Args[2]]
 	var to, toOk = converter.UnitRegistry[os.Args[3]]
 
+	var allowedUnitsString = strings.Join(converter.GetAllowedUnits(), ", ")
+
 	if(!fromOk) {
-		exitWithError("Invalid From Unit!. Allowed Units: " + strings.Join(converter.GetAllowedUnits(), ", "))
+		exitWithError("Invalid From Unit!. Allowed Units: " + allowedUnitsString)
 	}
 
 	if(!toOk) {
-		exitWithError("Invalid To Unit!. Allowed Units: " + strings.Join(converter.GetAllowedUnits(), ", "))
+		exitWithError("Invalid To Unit!. Allowed Units: " + allowedUnitsString)
 	}
 
 	var final, err = converter.Convert(value, from.Symbol(), to.Symbol())
