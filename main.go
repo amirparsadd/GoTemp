@@ -44,7 +44,22 @@ func main() {
 		exitWithError("Unexpected Error: " + err.Error())
 	}
 
-	fmt.Printf("%v%v -> %v%v\n", value, from.Symbol(), final, to.Symbol())
+	fmt.Printf("%v%v %v %v%v\n", value, from.Symbol(), getArrow(), final, to.Symbol())
+}
+
+// getArrow returns the appropriate arrow symbol, attempting to detect terminal capabilities.
+func getArrow() string {
+	var term = os.Getenv("TERM")
+	var lang = os.Getenv("LANG")
+	var lcAll = os.Getenv("LC_ALL")
+
+	if strings.Contains(term, "xterm") || strings.Contains(term, "tmux") {
+		return "→"
+	}
+	if strings.Contains(lang, "UTF-8") || strings.Contains(lcAll, "UTF-8") {
+		return "→"
+	}
+	return "->"
 }
 
 func exitWithError(text string) {
