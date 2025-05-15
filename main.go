@@ -15,6 +15,8 @@ func main() {
 	// 2 - From
 	// 3 - To
 
+	converter.RegisterBaseUnits()
+
 	if(len(os.Args) != 4) {
 		exitWithError("Invalid Args Length.")
 	}
