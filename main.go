@@ -31,11 +31,11 @@ func main() {
 	var allowedUnitsString = strings.Join(converter.GetAllowedUnits(), ", ")
 
 	if(!fromOk) {
-		exitWithError("Invalid From Unit!. Allowed Units: " + allowedUnitsString)
+		exitWithError("Invalid From Unit! Allowed Units: " + allowedUnitsString)
 	}
 
 	if(!toOk) {
-		exitWithError("Invalid To Unit!. Allowed Units: " + allowedUnitsString)
+		exitWithError("Invalid To Unit! Allowed Units: " + allowedUnitsString)
 	}
 
 	var final, err = converter.Convert(value, from.Symbol(), to.Symbol())
