@@ -11,59 +11,34 @@ type UnitConverter interface {
 
 // celsiusConverter implements the UnitConverter interface for Celsius.
 type celsiusConverter struct{}
-
-func (celsiusConverter) ToKelvin(celsius float64) float64 {
-	return celsius + 273.15
-}
-
-func (celsiusConverter) FromKelvin(kelvin float64) float64 {
-	return kelvin - 273.15
-}
-
-func (celsiusConverter) Symbol() string {
-	return "C"
-}
+func (celsiusConverter) ToKelvin(celsius float64) float64 { return celsius + 273.15 }
+func (celsiusConverter) FromKelvin(kelvin float64) float64 { return kelvin - 273.15 }
+func (celsiusConverter) Symbol() string { return "C" }
 
 // fahrenheitConverter implements the UnitConverter interface for Fahrenheit.
 type fahrenheitConverter struct{}
-
-func (fahrenheitConverter) ToKelvin(fahrenheit float64) float64 {
-	return (fahrenheit - 32) * 5 / 9 + 273.15
-}
-
-func (fahrenheitConverter) FromKelvin(kelvin float64) float64 {
-	return (kelvin - 273.15) * 9 / 5 + 32
-}
-
-func (fahrenheitConverter) Symbol() string {
-	return "F"
-}
+func (fahrenheitConverter) ToKelvin(fahrenheit float64) float64 { return (fahrenheit - 32) * 5 / 9 + 273.15 }
+func (fahrenheitConverter) FromKelvin(kelvin float64) float64 { return (kelvin - 273.15) * 9 / 5 + 32 }
+func (fahrenheitConverter) Symbol() string { return "F" }
 
 // kelvinConverter implements the UnitConverter interface for Kelvin.
 type kelvinConverter struct{}
-
-func (kelvinConverter) ToKelvin(kelvin float64) float64 {
-	return kelvin
-}
-
-func (kelvinConverter) FromKelvin(kelvin float64) float64 {
-	return kelvin
-}
-
-func (kelvinConverter) Symbol() string {
-	return "K"
-}
+func (kelvinConverter) ToKelvin(kelvin float64) float64 { return kelvin }
+func (kelvinConverter) FromKelvin(kelvin float64) float64 { return kelvin }
+func (kelvinConverter) Symbol() string { return "K" }
 
 // UnitRegistry holds the registered UnitConverter implementations.
-var UnitRegistry = map[string]UnitConverter{
-	"C": celsiusConverter{},
-	"F": fahrenheitConverter{},
-	"K": kelvinConverter{},
-}
+var UnitRegistry = map[string]UnitConverter{}
 
 // RegisterUnit allows adding support for new temperature units.
 func RegisterUnit(converter UnitConverter) {
 	UnitRegistry[converter.Symbol()] = converter
+}
+
+func RegisterBaseUnits() {
+	RegisterUnit(kelvinConverter{})
+	RegisterUnit(celsiusConverter{})
+	RegisterUnit(fahrenheitConverter{})
 }
 
 // Convert performs the temperature conversion.
