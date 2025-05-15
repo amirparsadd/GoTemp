@@ -1,7 +1,6 @@
 package main
 
 import (
-	// "gotemp/converter"
 	"fmt"
 	"gotemp/converter"
 	"os"
