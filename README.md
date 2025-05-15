@@ -18,10 +18,9 @@ GoTemp is a lightweight and straightforward command-line application written in 
 
 1.  **Clone the repository (if you haven't already):**
     ```
-    git clone <YOUR_REPOSITORY_URL>
+    git clone https://github.com/amirparsadd/GoTemp.git
     cd GoTemp
     ```
-    (Replace `<YOUR_REPOSITORY_URL>` with the actual URL of your GitHub repository once you create it.)
 
 2.  **Build the Go application:**
     ```
